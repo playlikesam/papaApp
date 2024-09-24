@@ -9,10 +9,32 @@
       "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_c2hpbmluZy1ncml6emx5LTk1LmNsZXJrLmFjY291bnRzLmRldiQ",
+        "EXPO_PUBLIC_PLACES_API_KEY": "00bf6c096da6415282cf6f83823ef7f2",
+        "EXPO_PUBLIC_DIRECTIONS_API_KEY": "00bf6c096da6415282cf6f83823ef7f2",
+        "EXPO_PUBLIC_SERVER_URL": "https://uber.dev/",
+        "EXPO_PUBLIC_GEOAPIFY_API_KEY": "00bf6c096da6415282cf6f83823ef7f2",
+        "DATABASE_URL": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml6eXVuZHdtc3RoYnNxanF2Y3J0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUwNzc0MzYsImV4cCI6MjA0MDY1MzQzNn0.PO7Ay6o0nXZmeGgr6GCjhx75IHents9JYVE2Qz8PZ4I"
+      }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://api.production.com",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_c2hpbmluZy1ncml6emx5LTk1LmNsZXJrLmFjY291bnRzLmRldiQ",
+        "EXPO_PUBLIC_PLACES_API_KEY": "00bf6c096da6415282cf6f83823ef7f2",
+        "EXPO_PUBLIC_DIRECTIONS_API_KEY": "00bf6c096da6415282cf6f83823ef7f2",
+        "EXPO_PUBLIC_SERVER_URL": "https://uber.dev/",
+        "EXPO_PUBLIC_GEOAPIFY_API_KEY": "00bf6c096da6415282cf6f83823ef7f2",
+        "DATABASE_URL": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml6eXVuZHdtc3RoYnNxanF2Y3J0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUwNzc0MzYsImV4cCI6MjA0MDY1MzQzNn0.PO7Ay6o0nXZmeGgr6GCjhx75IHents9JYVE2Qz8PZ4I"
+      }
+    },
+    "test": {
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://api.test.com"
+      }
     }
   },
   "submit": {

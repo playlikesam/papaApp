@@ -187,7 +187,7 @@ const partsIconUrl = 'https://cdn-icons-png.flaticon.com/128/9759/9759984.png';
           zIndex: 1000,
           }}
         >
-          <Menu />
+          <Menu onClose={toggleMenu} />
           <TouchableOpacity
             onPress={toggleMenu}
             style={{

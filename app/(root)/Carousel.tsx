@@ -60,11 +60,17 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 20,
     },
+    item: {
+        width: width * 0.9,  // 90% of the screen width
+        height: 200,         // Fixed height for uniformity
+        justifyContent: 'center', // Center the content
+        alignItems: 'center',     // Center the content
+    },
     image: {
         width: width * 0.9,  // 90% of the screen width
         height: 200,         // Fixed height for uniformity
         resizeMode: 'cover', // Ensures the image covers the space and crops the excess
-        borderRadius: 0,     // Rounded corners for aesthetics
+        borderRadius: 20,     // Rounded corners for aesthetics
         left: 15,
     },
     tabContainer: {
