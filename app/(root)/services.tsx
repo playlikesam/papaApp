@@ -12,9 +12,7 @@ const Services: React.FC = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#F5F5F5" }}>
       <ScrollView contentContainerStyle={{ padding: 20 }}>
         {/* Back Button */}
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Text style={styles.backButtonText}>← Back</Text>
-        </TouchableOpacity>
+        
 
         {/* Heading */}
         <Text style={styles.heading}>Choose Services</Text>

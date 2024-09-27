@@ -49,7 +49,7 @@ const Servicing: React.FC = () => {
   const handleServicePress = (serviceName: string) => {
     // Navigate to the services.tsx page, passing the selected service name as a parameter
     router.push({
-      pathname: '/services',
+      pathname: '/VendorList',
       params: { service: serviceName },
     });
   };
@@ -64,11 +64,6 @@ const Servicing: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Back Button */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-        <Ionicons name="arrow-back" size={30} color="#333" />
-      </TouchableOpacity>
-
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View>
           <Text style={styles.heading}>Select a Service</Text>
@@ -144,7 +139,6 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginTop: 30,
   },
   subheading: {
     fontSize: 16,
@@ -155,7 +149,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginTop: 30,
+    marginTop: 20,
   },
   serviceBox: {
     width: '30%',

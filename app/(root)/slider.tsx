@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, FlatList, Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 const { width } = Dimensions.get('window');
 
 // Sample data with dynamic offers for a mechanic store
@@ -16,9 +16,11 @@ const data = [
 ];
 
 const SliderReel = () => {
+  const navigation = useNavigation();
+
   const handleCardPress = (item) => {
-    // Handle card press (navigation or other actions)
-    console.log('Card pressed:', item);
+    // Navigate to VendorList screen with the selected item
+    navigation.navigate('VendorList', { item });
   };
 
   return (

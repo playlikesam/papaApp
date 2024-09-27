@@ -6,10 +6,6 @@ const Payment: React.FC = () => {
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState<string>("");
 
-  const handleBackPress = () => {
-    router.back();
-  };
-
   const handleConfirmPress = () => {
     if (!selectedOption) {
       Alert.alert("Oops!", "Please pick a payment method 😊");
@@ -47,10 +43,7 @@ const Payment: React.FC = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Back Button */}
-      <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
-        <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/9312/9312240.png' }} style={styles.backIcon} />
-      </TouchableOpacity>
+     
 
       {/* Payment Title */}
       <Text style={styles.title}>Payment Options</Text>

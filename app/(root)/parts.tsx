@@ -1,301 +1,243 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  Modal,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-import { icons, images } from "@/constants";
+import React, { useState } from "react";
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Picker } from "@react-native-picker/picker";
+import { useRouter } from "expo-router"; // Import useRouter
+import Ionicons from 'react-native-vector-icons/Ionicons'; // Import the icon package
+
+const demoProducts = [
+  { id: '1', name: 'Engine Oil', iconUri: 'https://cdn-icons-png.flaticon.com/128/7199/7199770.png', price: '₹500', offer: '20% Off', category: 'engine_parts' },
+  { id: '2', name: 'Battery', iconUri: 'https://cdn-icons-png.flaticon.com/128/7199/7199770.png', price: '₹1500', offer: 'Buy 1 Get 1', category: 'electrical' },
+  { id: '3', name: 'Brake Pads', iconUri: 'https://cdn-icons-png.flaticon.com/128/7199/7199770.png', price: '₹700', offer: '15% Off', category: 'brakes' },
+  { id: '4', name: 'Tire', iconUri: 'https://cdn-icons-png.flaticon.com/128/7199/7199770.png', price: '₹3000', offer: '10% Off', category: 'tires' },
+  { id: '5', name: 'Wiper Blades', iconUri: 'https://cdn-icons-png.flaticon.com/128/7199/7199770.png', price: '₹300', offer: '5% Off', category: 'wipers' },
+  { id: '6', name: 'Wiper Blades', iconUri: 'https://cdn-icons-png.flaticon.com/128/7199/7199770.png', price: '₹300', offer: '5% Off', category: 'wipers' },
+  // Add more demo products as needed...
+];
+
+const trendingProducts = [
+  { id: '1', name: 'Ciat Tires', iconUri: 'https://cdn-icons-png.flaticon.com/128/7199/7199770.png', price: '₹3000', offer: '5% Off' },
+  { id: '2', name: 'Servo Brake Oil', iconUri: 'https://cdn-icons-png.flaticon.com/128/7199/7199770.png', price: '₹600', offer: '10% Off' },
+  { id: '3', name: 'Spark Plugs', iconUri: 'https://cdn-icons-png.flaticon.com/128/7199/7199770.png', price: '₹200', offer: '30% Off' },
+  { id: '4', name: 'Air Filter', iconUri: 'https://cdn-icons-png.flaticon.com/128/7199/7199770.png', price: '₹400', offer: '15% Off' },
+  { id: '5', name: 'Oil Filter', iconUri: 'https://cdn-icons-png.flaticon.com/128/7199/7199770.png', price: '₹150', offer: '20% Off' },
+  // Add more trending products as needed...
+];
 
 const Parts: React.FC = () => {
-  const router = useRouter();
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const router = useRouter(); // Initialize useRouter
 
-  // State for wishlist
-  const [wishlist, setWishlist] = useState<{ [key: string]: boolean }>({});
-  const [quantity, setQuantity] = useState<{ [key: string]: number }>({});
-  const [modalVisible, setModalVisible] = useState(false);
-  const [popupMessage, setPopupMessage] = useState('');
+  // Filtering products based on selected category
+  const filteredProducts = selectedCategory === "all"
+    ? demoProducts
+    : demoProducts.filter(product => product.category === selectedCategory);
 
-  // Handle wishlist toggle
-  const handleWishlistToggle = (productId: string) => {
-    setWishlist((prevWishlist) => {
-      const newWishlistState = !prevWishlist[productId];
-      setPopupMessage(
-        newWishlistState ? 'Item added to wishlist' : 'Item removed from wishlist'
-      );
-      setModalVisible(true);
-
-      // Hide the popup after 2 seconds
-      setTimeout(() => {
-        setModalVisible(false);
-      }, 2000);
-
-      return { ...prevWishlist, [productId]: newWishlistState };
-    });
+  const handleProductPress = (product: any) => {
+    // Navigate to Part Details when a product card is clicked
+    router.push(`/part details?id=${product.id}`);
   };
 
-  // Handle quantity increment
-  const handleQuantityIncrement = (productId: string) => {
-    setQuantity((prevQuantity) => ({
-      ...prevQuantity,
-      [productId]: (prevQuantity[productId] || 1) + 1,
-    }));
+  const handleTrendingProductPress = () => {
+    // Navigate to Cart when a trending product is clicked
+    router.push(`/cart`);
   };
-
-  // Handle quantity decrement
-  const handleQuantityDecrement = (productId: string) => {
-    setQuantity((prevQuantity) => ({
-      ...prevQuantity,
-      [productId]: Math.max((prevQuantity[productId] || 1) - 1, 1), // Ensure the quantity doesn't go below 1
-    }));
-  };
-
-  // Handle add to cart
-  const handleAddToCart = (productId: string) => {
-    // Navigate to cart.tsx with the productId or add the item to cart logic
-    router.push('/cart');
-  };
-
-  // Render a product card
-  const renderProductCard = (
-    productId: string,
-    productTitle: string,
-    productImage: any,
-    rating: number,
-    offer?: string
-  ) => (
-    <View style={styles.productBox} key={productId}>
-      {offer && <View style={styles.offerBadge}><Text style={styles.offerBadgeText}>{offer}</Text></View>}
-      <Image source={productImage} style={styles.productImage} />
-      <View style={styles.productDetails}>
-        <Text style={styles.productTitle}>{productTitle}</Text>
-        <Text style={styles.productDescription}>
-          High quality product description goes here. Perfect for your car!
-        </Text>
-        {/* Price */}
-        <Text style={styles.price}>Price: ₹999</Text>
-
-        {/* Rating */}
-        <View style={styles.ratingContainer}>
-          {[1, 2, 3, 4, 5].map((star) => (
-            <Ionicons
-              key={star}
-              name={star <= rating ? 'star' : 'star-outline'}
-              size={20}
-              color={star <= rating ? 'gold' : '#ccc'}
-            />
-          ))}
-          <Text style={styles.ratingText}>({rating.toFixed(1)})</Text>
-        </View>
-
-        {/* Add to Cart Button */}
-        <TouchableOpacity onPress={() => handleAddToCart(productId)} style={styles.addToCartButton}>
-          <Text style={styles.addToCartButtonText}>Add to Cart</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Icon and Quantity Section */}
-      <View style={styles.iconAndQuantityContainer}>
-        {/* Wishlist Icon */}
-        <TouchableOpacity
-          onPress={() => handleWishlistToggle(productId)}
-          style={styles.wishlistIcon}
-        >
-          <Ionicons
-            name={wishlist[productId] ? 'heart' : 'heart-outline'}
-            size={30}
-            color={wishlist[productId] ? 'red' : '#333'}
-          />
-        </TouchableOpacity>
-
-        {/* Quantity Section */}
-        <View style={styles.quantitySection}>
-          <TouchableOpacity onPress={() => handleQuantityDecrement(productId)} style={styles.quantityButton}>
-            <Text style={styles.quantityButtonText}>-</Text>
-          </TouchableOpacity>
-          <Text style={styles.quantityNumber}>{quantity[productId] || 1}</Text>
-          <TouchableOpacity onPress={() => handleQuantityIncrement(productId)} style={styles.quantityButton}>
-            <Text style={styles.quantityButtonText}>+</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
-  );
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.content}>
-        {/* Back Button */}
-        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={30} color="#333" />
-        </TouchableOpacity>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {/* Heading */}
+        <Text style={styles.heading}>Products and Spares</Text>
 
-        {/* Product Section */}
-        <Text style={styles.header}>Accessories & Products</Text>
-
-        <View style={styles.productContainer}>
-          {/* Product Cards with Offers */}
-          {renderProductCard('1', 'Shell Advance', images.engine_oil, 4.2, '20% Off')}
-          {renderProductCard('2', 'Power Line', images.battery, 3.8, 'Buy 1 Get 1 Free')}
+        {/* Category Dropdown */}
+        <Text style={styles.label}>Filter by Category:</Text>
+        <View style={styles.dropdownContainer}>
+          <Picker
+            selectedValue={selectedCategory}
+            onValueChange={(itemValue) => setSelectedCategory(itemValue)}
+            style={styles.dropdown}
+          >
+            <Picker.Item label="All" value="all" />
+            <Picker.Item label="Engine Parts" value="engine_parts" />
+            <Picker.Item label="Electrical" value="electrical" />
+            <Picker.Item label="Brakes" value="brakes" />
+            <Picker.Item label="Tires" value="tires" />
+            <Picker.Item label="Wipers" value="wipers" />
+          </Picker>
         </View>
 
-        {/* Popup Modal */}
-        <Modal visible={modalVisible} transparent={true} animationType="fade">
-          <View style={styles.modalBackground}>
-            <View style={styles.popup}>
-              <Text style={styles.popupText}>{popupMessage}</Text>
-            </View>
-          </View>
-        </Modal>
+        {/* Product Listing in a 3x3 Grid */}
+        <View style={styles.productGrid}>
+          {filteredProducts.map((product) => (
+            <TouchableOpacity
+              key={product.id}
+              style={styles.productCard}
+              onPress={() => handleProductPress(product)} // Navigate to part details
+            >
+              <Image source={{ uri: product.iconUri }} style={styles.productImage} />
+              <View style={styles.productDetails}>
+                <Text style={styles.productName}>{product.name}</Text>
+                {product.offer && <Text style={styles.productOffer}>{product.offer}</Text>}
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        {/* Divider Line */}
+        <View style={styles.divider} />
+
+        {/* Trending Products Section */}
+        <Text style={styles.trendingHeading}>Trending Products</Text>
+        <View style={styles.trendingProductList}>
+          {trendingProducts.map((product) => (
+            <TouchableOpacity
+              key={product.id}
+              style={styles.trendingProductCard}
+              onPress={handleTrendingProductPress} // Navigate to cart
+            >
+              <View style={styles.imageContainer}>
+                <Image source={{ uri: product.iconUri }} style={styles.trendingProductImage} />
+                {product.offer && (
+                  <View style={styles.offerBadge}>
+                    <Text style={styles.offerBadgeText}>{product.offer}</Text>
+                  </View>
+                )}
+              </View>
+              <View style={styles.trendingProductDetails}>
+                <Text style={styles.trendingProductName}>{product.name}</Text>
+                <Text style={styles.trendingProductPrice}>{product.price}</Text>
+              </View>
+              {/* Wishlist Icon */}
+              <TouchableOpacity style={styles.wishlistIcon}>
+                <Ionicons name="heart-outline" size={24} color="#FF6347" />
+              </TouchableOpacity>
+            </TouchableOpacity>
+          ))}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
+// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
-    paddingBottom: 80,
+    backgroundColor: "#F5F5F5",
   },
-  content: {
+  scrollContainer: {
     padding: 20,
-    paddingTop: 80,
   },
-  backButton: {
-    position: 'absolute',
-    top: 20,
-    left: 20,
-    zIndex: 1000,
+  heading: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
   },
-  header: {
-    fontSize: 20,
-    fontWeight: '700',
-    marginBottom: 16,
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
   },
-  productContainer: {
-    flexDirection: 'column',
+  dropdownContainer: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    marginBottom: 20,
+    backgroundColor: "#fff",
   },
-  productBox: {
-    flexDirection: 'row',
-    padding: 16,
-    marginBottom: 16,
-    backgroundColor: '#f9f9f9',
-    borderRadius: 8,
+  dropdown: {
+    height: 50,
+  },
+  productGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
+  productCard: {
+    width: "30%", // 3 cards in a row
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 15,
+    alignItems: "center",
     elevation: 2,
-    position: 'relative', // For positioning the badge
-  },
-  offerBadge: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-    backgroundColor: '#28a745', // Green background color
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    borderRadius: 4,
-    zIndex: 1000,
-  },
-  offerBadgeText: {
-    color: '#fff',
-    fontSize: 12,
-    fontWeight: 'bold',
   },
   productImage: {
-    width: 80,
-    height: 80,
+    width: 50,
+    height: 50,
+    marginBottom: 10,
   },
   productDetails: {
-    flex: 1,
-    marginLeft: 10,
+    alignItems: "center",
   },
-  productTitle: {
+  productName: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "600",
+    textAlign: "center",
   },
-  productDescription: {
-    fontSize: 12,
-    color: '#888',
-    marginTop: 4,
-  },
-  price: {
+  productOffer: {
     fontSize: 14,
-    fontWeight: 'bold',
-    marginTop: 4,
+    color: "#FF6347", // Tomato color for offers
   },
-  ratingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 10,
+  divider: {
+    height: 1,
+    backgroundColor: "#ccc",
+    marginVertical: 20,
   },
-  ratingText: {
+  trendingHeading: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  trendingProductList: {
+    flexDirection: "column",
+  },
+  trendingProductCard: {
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 15,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    elevation: 2,
+  },
+  imageContainer: {
+    position: 'relative', // Make position relative for absolute badge
+    alignItems: "center",
+  },
+  trendingProductImage: {
+    width: 40,
+    height: 40,
+    marginRight: 15,
+  },
+  trendingProductDetails: {
+    flex: 1,
+    marginLeft: 20,
+  },
+  trendingProductName: {
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  trendingProductPrice: {
     fontSize: 14,
-    marginLeft: 8,
-    color: '#333',
-  },
-  addToCartButton: {
-    backgroundColor: '#ff3131',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginTop: 10,
-    alignItems: 'center',
-  },
-  addToCartButtonText: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  iconAndQuantityContainer: {
-    position: 'absolute',
-    top: 16,
-    right: 16,
-    flexDirection: 'column',
-    alignItems: 'center',
+    color: "#888",
   },
   wishlistIcon: {
-    marginBottom: 10,
-    marginTop:45,
+    position: "relative",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  quantitySection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  quantityButton: {
-    backgroundColor: '#ddd',
-    paddingHorizontal: 5,
-    borderRadius: 5,
-  },
-  quantityButtonText: {
-    color: '#ff3131',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  quantityNumber: {
-    fontSize: 16,
-    marginHorizontal: 10,
-  },
-  modalBackground: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  popup: {
-    backgroundColor: '#fff',
-    padding: 20,
+  offerBadge: {
+    position: "absolute",
+    right: -10,
+    top: -10,
+    backgroundColor: "#FF6347",
     borderRadius: 10,
-    width: 250,
-    alignItems: 'center',
+    padding: 3,
   },
-  popupText: {
-    fontSize: 16,
-    color: '#333',
+  offerBadgeText: {
+    color: "#fff",
+    fontSize: 12,
   },
 });
 

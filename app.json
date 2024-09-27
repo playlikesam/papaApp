@@ -20,7 +20,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.supersaransh.uber"
+      "package": "com.mech.demo"
     },
     "web": {
       "bundler": "metro",

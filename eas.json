@@ -20,6 +20,10 @@
       }
     },
     "production": {
+      "android": {
+        "buildType": "app-bundle", 
+        "withoutCredentials": false
+      },
       "autoIncrement": true,
       "env": {
         "EXPO_PUBLIC_API_URL": "https://api.production.com",

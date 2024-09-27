@@ -4,9 +4,12 @@ import { useNavigation } from '@react-navigation/native';
 
 // Sample vendor data
 const vendors = [
-  { id: '1', name: 'Baabu Pandey', description: 'Description for Vendor 1', image: 'https://mechbuddy.in/wp-content/uploads/2023/05/blog-s-1-2-1-1.jpg', availability: 'Available' },
-  { id: '2', name: 'Golu service', description: 'Description for Vendor 2', image: 'https://mechbuddy.in/wp-content/uploads/2023/05/blog-s-1-2-1-1.jpg', availability: 'Unavailable' },
-  { id: '3', name: 'Rahul Gandhi', description: 'Description for Vendor 3', image: 'https://mechbuddy.in/wp-content/uploads/2023/05/blog-s-1-2-1-1.jpg', availability: 'Available' },
+  { id: '1', name: 'Vendor 1', description: 'Description for Vendor 1', image: 'https://mechbuddy.in/wp-content/uploads/2023/05/blog-s-1-2-1-1.jpg', availability: 'Available' },
+  { id: '2', name: 'Vendor 2', description: 'Description for Vendor 2', image: 'https://mechbuddy.in/wp-content/uploads/2023/05/blog-s-1-2-1-1.jpg', availability: 'Unavailable' },
+  { id: '3', name: 'Vendor 3', description: 'Description for Vendor 3', image: 'https://mechbuddy.in/wp-content/uploads/2023/05/blog-s-1-2-1-1.jpg', availability: 'Available' },
+  { id: '4', name: 'Vendor 4', description: 'Description for Vendor 4', image: 'https://mechbuddy.in/wp-content/uploads/2023/05/blog-s-1-2-1-1.jpg', availability: 'Available' },
+  { id: '5', name: 'Vendor 5', description: 'Description for Vendor 5', image: 'https://mechbuddy.in/wp-content/uploads/2023/05/blog-s-1-2-1-1.jpg', availability: 'Unavailable' },
+  { id: '6', name: 'Vendor 6', description: 'Description for Vendor 6', image: 'https://mechbuddy.in/wp-content/uploads/2023/05/blog-s-1-2-1-1.jpg', availability: 'Available' },
 ];
 
 // Replace with your custom star icon URL
@@ -22,8 +25,7 @@ const VendorList: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Image source={{ uri: starIconUrl }} style={styles.starIcon} />
-        <Text style={styles.heading}>Top Rated Vendors</Text>
+        <Text style={styles.heading}>Available Vendors</Text>
       </View>
       <FlatList
         data={vendors}
@@ -63,6 +65,8 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 20,
     fontWeight: '700',
+    paddingTop: 20,
+    paddingLeft: 20,
   },
   vendorItem: {
     flexDirection: 'row',

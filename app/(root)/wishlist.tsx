@@ -91,11 +91,6 @@ const Wishlist: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      {/* Back button to navigate back to the Cart */}
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backIcon}>
-        <FontAwesome name="arrow-left" size={24} color="#333" />
-      </TouchableOpacity>
-
       <Text style={styles.heading}>Your Wishlist</Text>
       {wishlist.length > 0 ? (
         <FlatList

@@ -138,10 +138,6 @@ const Cart: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.content}>
-        {/* Back Button */}
-        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={30} color="#333" />
-        </TouchableOpacity>
 
         {/* Wishlist Icon (Top Right) */}
         <TouchableOpacity style={styles.wishlistButton} onPress={handleNavigateToWishlist}>
@@ -213,9 +209,9 @@ const styles = StyleSheet.create({
     zIndex: 1000,
   },
   header: {
+    top: -60,
     fontSize: 24,
     fontWeight: '700',
-    marginBottom: 20,
     textAlign: 'center',
   },
   productContainer: {

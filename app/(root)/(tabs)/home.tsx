@@ -77,7 +77,7 @@ const partsIconUrl = 'https://cdn-icons-png.flaticon.com/128/9759/9759984.png';
   };
 
   const navigateToServices = () => {
-    router.push("/services");
+    router.push("/VendorList");
   };
 
   const navigateToServicing = () => {
@@ -133,7 +133,7 @@ const partsIconUrl = 'https://cdn-icons-png.flaticon.com/128/9759/9759984.png';
     </View>
 
         {/* Advertisement Strip */}
-        <AdvertisementStrip />
+        {/* <AdvertisementStrip /> */}
 
         {/* Bell Icon */}
         <TouchableOpacity 
