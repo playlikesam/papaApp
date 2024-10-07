@@ -50,12 +50,6 @@ const Notifications: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/9312/9312240.png' }} style={styles.backIcon} />
-        </TouchableOpacity>
-        <Text style={styles.heading}>Notifications</Text>
-      </View>
       <FlatList
         data={notificationsData}
         keyExtractor={(item) => item.id}

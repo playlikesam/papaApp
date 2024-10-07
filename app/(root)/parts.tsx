@@ -129,20 +129,23 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   heading: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 20,
+    color: "#333",
   },
   label: {
-    fontSize: 16,
-    marginBottom: 5,
+    fontSize: 18,
+    marginBottom: 10,
+    color: "#555",
   },
   dropdownContainer: {
     borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 5,
+    borderRadius: 10,
     marginBottom: 20,
     backgroundColor: "#fff",
+    paddingHorizontal: 10,
   },
   dropdown: {
     height: 50,
@@ -155,15 +158,19 @@ const styles = StyleSheet.create({
   productCard: {
     width: "30%", // 3 cards in a row
     backgroundColor: "#fff",
-    borderRadius: 10,
+    borderRadius: 15,
     padding: 15,
     marginBottom: 15,
     alignItems: "center",
-    elevation: 2,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
   },
   productImage: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     marginBottom: 10,
   },
   productDetails: {
@@ -173,6 +180,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
     textAlign: "center",
+    color: "#333",
   },
   productOffer: {
     fontSize: 14,
@@ -184,30 +192,35 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   trendingHeading: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 20,
+    color: "#333",
   },
   trendingProductList: {
     flexDirection: "column",
   },
   trendingProductCard: {
     backgroundColor: "#fff",
-    borderRadius: 10,
+    borderRadius: 15,
     padding: 15,
     marginBottom: 15,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    elevation: 2,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
   },
   imageContainer: {
     position: 'relative', // Make position relative for absolute badge
     alignItems: "center",
   },
   trendingProductImage: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     marginRight: 15,
   },
   trendingProductDetails: {
@@ -217,6 +230,7 @@ const styles = StyleSheet.create({
   trendingProductName: {
     fontSize: 16,
     fontWeight: "600",
+    color: "#333",
   },
   trendingProductPrice: {
     fontSize: 14,

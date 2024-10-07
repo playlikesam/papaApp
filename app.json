@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "uber",
-    "slug": "uber",
+    "name": "Mech Buddy",
+    "slug": "mech-buddy",
     "version": "1.0.0",
+    "entryPoint": "./node_modules/expo-router/entry",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "icon": "./assets/icons/appLogo.png",
+    "scheme": "mechbuddy",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -17,33 +18,30 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/icons/appLogo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.mech.demo"
+      "package": "com.maitrim.mechbuddy",
+      "label": "Mech Buddy",
+      "versionCode": 4
     },
     "web": {
       "bundler": "metro",
       "output": "server",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/icons/appLogo.png"
     },
     "plugins": [
-      [
-        "expo-router",
-        {
-          "origin": "https://uber.dev/"
-        }
-      ]
+      "expo-router"
     ],
     "experiments": {
-      "typedRoutes": true
+      "typedRoutes": false
     },
     "extra": {
       "router": {
-        "origin": "https://uber.dev/"
+        "origin": "https://mechbuddy.dev/"
       },
       "eas": {
-        "projectId": "4fc55010-deb7-4e9c-a285-d45acd2368c2"
+        "projectId": "e9ae33ca-9aa9-4f98-8576-5d7274d200cd"
       }
     }
   }

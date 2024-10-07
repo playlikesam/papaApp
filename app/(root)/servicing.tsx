@@ -67,7 +67,7 @@ const Servicing: React.FC = () => {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View>
           <Text style={styles.heading}>Select a Service</Text>
-          <Text style={styles.subheading}>Choose a service to get started</Text> 
+          {/* <Text style={styles.subheading}>Choose a service to get started</Text>  */}
         </View>
 
         <View style={styles.gridContainer}>
@@ -128,16 +128,12 @@ const styles = StyleSheet.create({
     
   },
   scrollContainer: {
-    padding: 20,
-  },
-  backButton: {
-    position: 'absolute',
-    top: 20,
-    left: 20,
-    zIndex: 1000,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 20,
   },
   heading: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   subheading: {
@@ -185,7 +181,7 @@ const styles = StyleSheet.create({
   divider: {
     height: 1,
     backgroundColor: '#ddd',
-    marginVertical: 20,
+    marginTop: 15,
   },
   vendorsHeading: {
     fontSize: 20,

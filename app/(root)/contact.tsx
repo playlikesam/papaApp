@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert, Image} from 'react-native';
+import { icons } from '@/constants/index';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons'; // Import Ionicons for back button
 import { useRouter } from 'expo-router';
 
 const Contact: React.FC = () => {
@@ -25,49 +25,95 @@ const Contact: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.content}>
-        {/* Back Button */}
-        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={30} color="#333" />
-        </TouchableOpacity>
-
         <View style={styles.header}>
-          <Text style={styles.title}>Contact Mech Buddy</Text>
-          <Text style={styles.subtitle}>We'd love to hear from you!</Text>
+            <View style={styles.imageContainer}>
+              <Image
+              source={icons.aam} // Use the icon from the imported index.ts
+              style={styles.image}
+              resizeMode="cover"
+              />
+            </View>
         </View>
 
-        <View style={styles.contactInfo}>
-          <Text style={styles.infoTitle}>Contact Details</Text>
-          <Text style={styles.infoText}>📍 Address: 123 Mechanic Lane, Auto City, AC 45678</Text>
-          <Text style={styles.infoText}>📞 Phone: +123 456 7890</Text>
-          <Text style={styles.infoText}>✉️ Email: support@mechbuddy.com</Text>
+        <View style={styles.card}>
+          <View style={styles.formContainer}>
+            <Text style={styles.formTitle}>Send us a Message</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Your Name"
+              value={name}
+              onChangeText={setName}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Your Email"
+              keyboardType="email-address"
+              value={email}
+              onChangeText={setEmail}
+            />
+            <TextInput
+              style={styles.textArea}
+              placeholder="Your Message"
+              multiline
+              numberOfLines={4}
+              value={message}
+              onChangeText={setMessage}
+            />
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+              <Text style={styles.buttonText}>Send Message</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-
-        <View style={styles.formContainer}>
-          <Text style={styles.formTitle}>Send Us a Message</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Your Name"
-            value={name}
-            onChangeText={setName}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Your Email"
-            keyboardType="email-address"
-            value={email}
-            onChangeText={setEmail}
-          />
-          <TextInput
-            style={styles.textArea}
-            placeholder="Your Message"
-            multiline
-            numberOfLines={4}
-            value={message}
-            onChangeText={setMessage}
-          />
-          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-            <Text style={styles.buttonText}>Send Message</Text>
-          </TouchableOpacity>
+        <View style={styles.card}>
+          <View style={styles.contactInfo}>
+            <Text style={styles.infoTitle}>Contact Details</Text>
+            <View style={styles.infoRow}>
+              <Image
+                source={{ uri: 'https://cdn-icons-png.flaticon.com/128/5616/5616461.png' }} // Replace with your icon URL
+                style={styles.icon}
+              />
+              <Text style={styles.infoText}>Jabalpur Incubation Centre, 3rd Floor, MIC Colony Katanga, Jabalpur, M.P (482001)</Text>
+            </View>
+            <View style={styles.infoRow}>
+              <Image
+                source={{ uri: 'https://cdn-icons-png.flaticon.com/128/455/455705.png' }} // Replace with your icon URL
+                style={styles.icon}
+              />
+              <Text style={styles.infoText}>+91 84357 76053</Text>
+            </View>
+            <View style={styles.infoRow}>
+              <Image
+                source={{ uri: 'https://cdn-icons-png.flaticon.com/128/3178/3178158.png' }} // Replace with your icon URL
+                style={styles.icon}
+              />
+              <Text style={styles.infoText}>connect@mechbuddy.in</Text>
+            </View>
+          </View>
+          <View style={styles.socialContainer}>
+            <Text style={styles.infoTitle}>Follow Us</Text>
+            <View style={styles.socialRow}>
+              <Image
+                source={{ uri: 'https://cdn-icons-png.flaticon.com/128/3670/3670051.png' }} // Replace with your WhatsApp icon URL
+                style={styles.icon}
+              />
+              <Image
+                source={{ uri: 'https://cdn-icons-png.flaticon.com/128/5968/5968764.png' }} // Replace with your Facebook icon URL
+                style={styles.icon}
+              />
+              <Image
+                source={{ uri: 'https://cdn-icons-png.flaticon.com/128/3670/3670151.png' }} // Replace with your Instagram icon URL
+                style={styles.icon}
+              />
+              <Image
+                source={{ uri: 'https://cdn-icons-png.flaticon.com/128/145/145807.png' }} // Replace with your LinkedIn icon URL
+                style={styles.icon}
+              />
+              <Image
+                source={{ uri: 'https://cdn-icons-png.flaticon.com/128/4138/4138124.png' }} // Replace with your Twitter icon URL
+                style={styles.icon}
+              />
+            </View>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -78,54 +124,83 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',
-    paddingBottom:80,
   },
   content: {
-    padding: 20,
-    paddingTop: 80, // Added padding at the top to accommodate the back button
-  },
-  backButton: {
-    position: 'absolute',
-    top: 20,
-    left: 20,
-    zIndex: 1000,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 20,
   },
   header: {
     marginBottom: 20,
   },
- 
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: '700',
     color: '#333',
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 18,
     color: '#555',
     marginTop: 10,
   },
-  contactInfo: {
+  imageContainer: {
+    width: '100%',
+    aspectRatio: 16 / 9,
+    marginTop: 20,
+    borderRadius: 10,
+    overflow: 'hidden',
     marginBottom: 20,
   },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+  card: {
+    backgroundColor: '#FFF',
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 20,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  contactInfo: {
+    marginBottom: 20,
+    padding:20,
+  },
   infoTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '700',
     color: '#333',
+    marginBottom: 20,
+  },
+  infoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 10,
+    flexWrap: 'wrap',
+  },
+  icon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginRight: 10,
   },
   infoText: {
     fontSize: 16,
     color: '#555',
-    marginBottom: 5,
+    flex: 1,
+    textAlign: 'justify',
   },
   formContainer: {
     backgroundColor: '#FFF',
     borderRadius: 8,
     padding: 20,
-    elevation: 3,
   },
   formTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '700',
     color: '#333',
     marginBottom: 10,
@@ -134,7 +209,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderColor: '#DDD',
     borderWidth: 1,
-    borderRadius: 4,
+    borderRadius: 20,
     padding: 12,
     marginBottom: 10,
     fontSize: 16,
@@ -143,7 +218,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderColor: '#DDD',
     borderWidth: 1,
-    borderRadius: 4,
+    borderRadius: 20,
     padding: 12,
     marginBottom: 10,
     fontSize: 16,
@@ -152,13 +227,22 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#ff3131',
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 30,
     alignItems: 'center',
   },
   buttonText: {
     color: '#FFF',
     fontWeight: '600',
     fontSize: 16,
+  },
+  socialContainer: {
+    marginBottom : 20,
+    paddingLeft:20,
+    paddingRight:20,
+  },
+  socialRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 });
 

@@ -38,7 +38,7 @@ const Subscription: React.FC = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#F5F5F5" }}>
-      <View style={{ padding: 20 }}>
+      <View>
         <Text style={styles.title}>Subscription Plans</Text>
 
         <FlatList
@@ -68,7 +68,7 @@ const Subscription: React.FC = () => {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "700",
     marginBottom: 20,
   },
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF3131",
     paddingVertical: 10,
     paddingHorizontal: 15,
-    borderRadius: 5,
+    borderRadius: 20,
   },
   subscribeButtonText: {
     color: "#FFF",

@@ -98,8 +98,7 @@ const vendorData = [
     ],
     rating: 4.5,
     reviews: [
-      'Great service and quick turnaround time.',
-      'The staff was very helpful and knowledgeable.'
+      'Be the first one to rate our services.',
     ]
   },
   {
@@ -250,22 +249,7 @@ const VendorDetail: React.FC = () => {
         </View>
       </View>
 
-      {/* Products
-      <View style={styles.cardsContainer}>
-        <Text style={styles.sectionHeading}>Quick Services</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scrollCards}>
-          {vendor.products.map((product) => (
-            <TouchableOpacity key={product.id} style={styles.card} onPress={() => handleCardPress(product.id, 'product')}>
-              <Image source={{ uri: product.icon }} style={styles.icon} />
-              <Text style={styles.cardTitle}>{product.title}</Text>
-              <Text style={styles.cardOffer}>{product.offer}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View> */}
-
       {/* Quick Services */}
-
       <View style={styles.cardsContainer}>
         <Text style={styles.sectionHeading}>Quick Services</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scrollCards}>
@@ -277,11 +261,10 @@ const VendorDetail: React.FC = () => {
             </TouchableOpacity>
           ))}
         </ScrollView>
+        <Subscription/>
       </View>
-
-      <View>
-        <Subscription />
-      </View>
+            
+      {/* Subscription */}
 
       {/* Ratings & Reviews */}
       <View style={styles.detailsContainer}>
@@ -301,10 +284,6 @@ const VendorDetail: React.FC = () => {
           <Text key={index} style={styles.reviewText}>• {review}</Text>
         ))}
       </View>
-
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-        <Text style={styles.backButtonText}>Back to Vendor List</Text>
-      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -381,8 +360,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   card: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     backgroundColor: '#F5F5F5',
     borderRadius: 10,
     padding: 10,
@@ -393,13 +372,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   icon: {
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
     marginBottom: 5,
   },
   cardTitle: {
     textAlign: 'center',
-    fontSize: 12,
+    fontSize: 14,
+    fontWeight: 'bold',
   },
   cardOffer: {
     fontSize: 12,
@@ -433,6 +413,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     alignItems: 'center',
+    marginTop: 20,
   },
   backButtonText: {
     color: '#FFF',

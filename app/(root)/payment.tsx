@@ -95,7 +95,7 @@ const Payment: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    paddingBottom: 120,
+    paddingBottom: 20,
   },
   backButton: {
     marginBottom: 20,

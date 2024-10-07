@@ -63,6 +63,9 @@ import image2 from "@/assets/images/image2.jpg";
 import image3 from "@/assets/images/image3.jpg";
 import m1 from "@/assets/images/m1.jpg";
 
+import aam from "@/assets/icons/aam.png";
+import appLogo from "@/assets/icons/appLogo.png";
+
 
 export const images = {
   onboarding1,
@@ -131,6 +134,8 @@ export const icons = {
   csl1,
   csl2,
   csl3,
+  aam,
+  appLogo,
 };
 
 export const onboarding = [

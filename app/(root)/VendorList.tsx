@@ -49,6 +49,7 @@ const VendorList: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
+    padding: 5,
     flex: 1,
     backgroundColor: '#F5F5F5',
   },
@@ -63,10 +64,10 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   heading: {
+    paddingTop:10,
+    paddingBottom:7,
     fontSize: 20,
     fontWeight: '700',
-    paddingTop: 20,
-    paddingLeft: 20,
   },
   vendorItem: {
     flexDirection: 'row',
@@ -74,7 +75,10 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 8,
     marginBottom: 10,
-    shadowColor: '#D3D3D3',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
     elevation: 3,
   },
   vendorImage: {

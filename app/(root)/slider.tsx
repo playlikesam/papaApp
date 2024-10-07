@@ -53,13 +53,12 @@ const SliderReel = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
     alignItems: 'center',
   },
   dividerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom:25,
   },
   exploreText: {
     marginHorizontal: 10,
@@ -72,7 +71,7 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#ccc',
     width: '100%',
-    marginVertical: 10,
+    marginTop:10,
   },
   card: {
     width: width * 0.3,

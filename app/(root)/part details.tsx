@@ -58,7 +58,7 @@ const PartDetails: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#F0F2F5",
     padding: 20,
   },
   scrollContainer: {
@@ -78,30 +78,41 @@ const styles = StyleSheet.create({
   partImage: {
     width: "100%",
     height: 200,
-    borderRadius: 10,
+    borderRadius: 15,
     marginBottom: 15,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 5,
   },
   partName: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: "bold",
     marginBottom: 10,
+    color: "#333",
   },
   partDescription: {
     fontSize: 16,
     marginBottom: 20,
-    color: "#555",
+    color: "#666",
   },
   varietiesHeading: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: "bold",
     marginBottom: 15,
+    color: "#333",
   },
   varietyCard: {
     backgroundColor: "#fff",
-    borderRadius: 10,
+    borderRadius: 15,
     padding: 15,
     marginBottom: 15,
-    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -132,6 +143,7 @@ const styles = StyleSheet.create({
   varietyName: {
     fontSize: 18,
     fontWeight: "600",
+    color: "#333",
   },
   varietyPrice: {
     fontSize: 16,

@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Entypo } from '@expo/vector-icons'; // Cross icon for close button
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons'; // Icons for menu items
 
 const Menu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
@@ -16,10 +15,10 @@ const Menu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       </TouchableOpacity>
 
       {/* About Us */}
-      <TouchableOpacity onPress={() => router.push('/about')} style={styles.menuItem}>
+      {/* <TouchableOpacity onPress={() => router.push('/about')} style={styles.menuItem}>
         <FontAwesome name="info-circle" size={24} color="#fff" style={styles.icon} />
         <Text style={styles.menuText}>About Us</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       {/* Contact */}
       <TouchableOpacity onPress={() => router.push('/contact')} style={styles.menuItem}>
